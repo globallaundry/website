@@ -2,7 +2,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Global Laundry™ | Fresh & Clean, Delivered",
+  title: "Services Global Laundry™ | Fresh & Clean, Delivered",
   description:
     "Door-to-door laundry & dry cleaning across Beirut & Metn. Fast pickup, expert care, and on-time delivery.",
 };
@@ -17,7 +17,7 @@ export default function Home() {
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
               <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
-                Beirut & Metn • Pickup & Delivery
+                Services Beirut & Metn • Pickup & Delivery
               </span>
               <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-6xl">
                 Your e-Laundry, Delivered.
