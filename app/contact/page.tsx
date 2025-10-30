@@ -68,7 +68,7 @@ export default function ContactPage() {
           </div>
 
           <p className="mt-4 text-sm text-gray-500">
-            Operating Hours: Monday–Friday 9:00 AM – 6:00 PM, Saturday until 3:00 PM, closed Sundays.
+            Operating Hours: Monday–Friday 9:00 AM – 6:00 PM, Saturday until 3:00 PM.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export default function ContactPage() {
         <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
           <iframe
             title="Global Laundry on Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3344.7042432379815!2d35.567!3d33.888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f1742b4b3dc79%3A0x6d87ea6a5c85a37f!2sFortyFour%20Tower%2C%20Dekwaneh!5e0!3m2!1sen!2slb!4v1699999999999"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2406.1728504893713!2d35.54047094779195!3d33.88086001786769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151f17773545f443%3A0x142456b2e5d45915!2sGlobal%20Laundry!5e0!3m2!1sen!2slb!4v1761804251993!5m2!1sen!2slb"
             width="100%"
             height="400"
             style={{ border: 0 }}
