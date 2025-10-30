@@ -69,7 +69,7 @@ export default function PricingPage() {
       <section className="mx-auto max-w-7xl px-6 py-14">
         <div className="grid gap-8 md:grid-cols-2">
           <div>
-            <h2 className="text-2xl font-bold">Wash & Fold (by kg)</h2>
+            <h2 className="text-2xl font-bold">Wash & Fold</h2>
             <p className="mt-2 text-gray-600">
               Everyday laundry washed, dried, and folded. Perfect for weekly
               loads.{" "}
@@ -81,8 +81,8 @@ export default function PricingPage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-gray-200 p-6">
                 <div className="text-sm font-semibold text-blue-700">Standard</div>
-                <div className="mt-1 text-3xl font-extrabold">$2.50</div>
-                <div className="text-sm text-gray-500">per kg</div>
+                <div className="mt-1 text-3xl font-extrabold">$9.99</div>
+                <div className="text-sm text-gray-500">per 3kg</div>
                 <ul className="mt-4 list-disc pl-5 text-sm text-gray-600">
                   <li>Mixed colors sorted</li>
                   <li>Detergent & softener included</li>
@@ -92,8 +92,8 @@ export default function PricingPage() {
 
               <div className="rounded-2xl border border-gray-200 p-6">
                 <div className="text-sm font-semibold text-blue-700">Express</div>
-                <div className="mt-1 text-3xl font-extrabold">$3.50</div>
-                <div className="text-sm text-gray-500">per kg</div>
+                <div className="mt-1 text-3xl font-extrabold">$19.99</div>
+                <div className="text-sm text-gray-500">per 3kg</div>
                 <ul className="mt-4 list-disc pl-5 text-sm text-gray-600">
                   <li>Priority processing</li>
                   <li>Same-day / Next-day</li>
