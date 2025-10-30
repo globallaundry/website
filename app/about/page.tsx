@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div>
           <h2 className="text-2xl font-bold">Our Story</h2>
           <p className="mt-3 text-gray-700 leading-relaxed">
-            Founded in 2019, Global Laundry began as a single-store operation in Jdeideh and has since
+            Founded in 2018, Global Laundry began as a single-store operation in Jdeideh and has since
             expanded into a modern service powered by technology and automation.
           </p>
           <p className="mt-3 text-gray-700 leading-relaxed">

@@ -40,7 +40,7 @@ export default function Footer() {
                 <Link href="/about">About Us</Link>
               </li>
               <li>
-                <Link href="/faq">FAQ</Link>
+                <Link href="/contact">Contact Us</Link>
               </li>
             </ul>
           </div>
@@ -50,9 +50,8 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-gray-900">Contact</h4>
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
               <li>📍 FortyFour Tower, Dekwaneh, Metn</li>
-              <li>📞 <a href="tel:+96143392927">04 392 927</a></li>
-              <li>📱 <a href="tel:+96181392927">81 392 927</a></li>
-              <li>✉️ info@globallaundry.co</li>
+              <li>📞 <a href="tel:+96133392927">03 39 29 27</a></li>
+              <li>✉️ support@globallaundry.co</li>
             </ul>
           </div>
 
