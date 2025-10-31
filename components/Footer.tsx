@@ -61,10 +61,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-gray-200 pt-6 text-sm text-gray-500 md:flex-row">
-          <p>© {new Date().getFullYear()} Made with ❤ Global Laundry. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Made with ❤</p>
           <div className="flex gap-4">
-            <Link href="/privacy">Privacy Policy</Link>
-            <Link href="/terms">Terms & Conditions</Link>
           </div>
         </div>
       </div>
