@@ -11,7 +11,7 @@ export default function Header() {
   const navItems = [
     { name: "Services", href: "/services" },
     { name: "Pricing", href: "/pricing" },
-    { name: "About", href: "/about" },
+    { name: "Login", href: "/auth/login" },
   ];
 
   return (
@@ -34,12 +34,11 @@ export default function Header() {
             </Link>
           ))}
           <a
-            href="https://wa.me/9613392927"
-            target="_blank"
+            href="/booking"
             rel="noopener noreferrer"
             className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
           >
-            WhatsApp
+            Book now
           </a>
         </nav>
 
