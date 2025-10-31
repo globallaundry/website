@@ -1,5 +1,7 @@
 // app/page.tsx
 import Link from "next/link";
+import QuickBooking from "../components/QuickBooking";
+import Hero from "../components/Hero";
 
 export const metadata = {
   title: "Global Laundry™ | Fresh & Clean, Delivered",
@@ -10,7 +12,8 @@ export const metadata = {
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-gray-900">
-      {/* Hero */}
+      {/* Rinse-style hero */}
+      <Hero />
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-blue-50 to-white" />
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
@@ -19,15 +22,23 @@ export default function Home() {
               <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
                 Beirut & Metn • Pickup & Delivery
               </span>
+
               <h1 className="mt-4 text-4xl font-extrabold tracking-tight md:text-6xl">
                 Your e-Laundry, Delivered.
               </h1>
+
               <p className="mt-4 text-lg text-gray-600 md:text-xl">
                 We personally pick up, professionally clean, and hand-deliver
-                your clothes—fast, fresh, and hassle-free.
+                your clothes — fast, fresh, and hassle-free.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+              <p className="mt-4 text-sm text-gray-500">
+                Typical turnaround: <strong>48–72 hours</strong>. Express options
+                available.
+              </p>
+
+              {/* Secondary CTAs (optional, keep if you want) */}
+              <div className="mt-6 flex flex-wrap items-center gap-4">
                 <a
                   href="https://wa.me/9613392927"
                   className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-5 py-3 text-white shadow hover:bg-blue-700"
@@ -41,14 +52,9 @@ export default function Home() {
                   View Pricing
                 </Link>
               </div>
-
-              <p className="mt-4 text-sm text-gray-500">
-                Typical turnaround: <strong>48–72 hours</strong>. Express options
-                available.
-              </p>
             </div>
 
-            {/* Hero mock image placeholder */}
+            {/* Hero image */}
             <div className="relative mx-auto aspect-[4/3] w-full max-w-xl overflow-hidden rounded-3xl border border-gray-200 bg-gray-100">
               {/* Replace /hero.jpg with your real image in /public */}
               <img
@@ -104,7 +110,7 @@ export default function Home() {
             Services
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-center text-gray-600">
-            From daily laundry to delicate dry cleaning—and Airbnb turnovers.
+            From daily laundry to delicate dry cleaning — and Airbnb turnovers.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -131,7 +137,6 @@ export default function Home() {
                 className="group rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:shadow-md"
               >
                 <div className="h-40 w-full overflow-hidden rounded-xl bg-gray-100">
-                  {/* Replace with real images */}
                   <img
                     src={`/service-${i + 1}.jpg`}
                     alt={card.title}
@@ -167,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Reviews (static placeholders) */}
+      {/* Reviews */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <h2 className="text-center text-3xl font-bold md:text-4xl">
@@ -177,11 +182,13 @@ export default function Home() {
             {[
               {
                 name: "Georges O.",
-                text: "Always on time and super clean. Pickup & delivery made life easier.",
+                text:
+                  "Always on time and super clean. Pickup & delivery made life easier.",
               },
               {
                 name: "Paola B.",
-                text: "Delicates came back perfect. Love the folded packaging!",
+                text:
+                  "Delicates came back perfect. Love the folded packaging!",
               },
               {
                 name: "Marwan",
@@ -235,9 +242,7 @@ export default function Home() {
       {/* CTA Banner */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <div className="rounded-3xl border border-gray-200 bg-white p-8 text-center shadow-sm">
-          <h3 className="text-2xl font-bold">
-            Ready to try Global Laundry™?
-          </h3>
+          <h3 className="text-2xl font-bold">Ready to try Global Laundry™?</h3>
           <p className="mt-2 text-gray-600">
             Message us on WhatsApp and we’ll schedule your pickup.
           </p>

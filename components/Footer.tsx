@@ -28,9 +28,6 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-gray-900">Quick Links</h4>
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
               <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
                 <Link href="/services">Services</Link>
               </li>
               <li>
