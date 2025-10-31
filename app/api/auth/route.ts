@@ -1,7 +1,6 @@
-// app/api/cleancloud-booking/route.ts
 import { NextResponse } from "next/server";
 
-/** Convert "YYYY-MM-DD" (or "MM/DD/YYYY") -> Unix timestamp at 12:00 UTC (per CleanCloud docs) */
+/** Convert "YYYY-MM-DD" (or "MM/DD/YYYY") -> Unix timestamp at 12:00 UTC */
 function toUnixAtNoonUTC(dateStr: string) {
   if (!dateStr) return undefined;
   let y: number, m: number, d: number;
@@ -17,9 +16,10 @@ function toUnixAtNoonUTC(dateStr: string) {
   return Math.floor(Date.UTC(y, (m - 1), d, 12, 0, 0) / 1000);
 }
 
-async function addCustomer(apiToken: string, params: {
-  name: string; phone: string; address: string;
-}) {
+async function addCustomer(
+  apiToken: string,
+  params: { name: string; phone: string; email: string; address: string }
+) {
   const resp = await fetch("https://cleancloudapp.com/api/addCustomer", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -27,6 +27,7 @@ async function addCustomer(apiToken: string, params: {
       api_token: apiToken,
       customerName: params.name,
       customerTel: params.phone,
+      customerEmail: params.email, // REQUIRED by API
       customerAddress: params.address,
       makeLatLng: 1,
       findRoute: 1,
@@ -34,11 +35,14 @@ async function addCustomer(apiToken: string, params: {
   });
 
   const text = await resp.text();
-  let data: any; try { data = JSON.parse(text); } catch { data = { raw: text }; }
+  let data: any;
+  try { data = JSON.parse(text); } catch { data = { raw: text }; }
 
   if (!resp.ok || data?.Success === "False" || data?.success === false) {
     throw new Error(typeof data === "object" ? JSON.stringify(data) : String(text));
   }
+
+  // API typically returns { Success:"True", CustomerID: 123, ... }
   const id = data?.CustomerID || data?.customerID || data?.id;
   if (!id) throw new Error("Could not read CustomerID from addCustomer response");
   return String(id);
@@ -51,7 +55,8 @@ async function addOrder(apiToken: string, payload: Record<string, any>) {
     body: JSON.stringify(payload),
   });
   const text = await resp.text();
-  let data: any; try { data = JSON.parse(text); } catch { data = { raw: text }; }
+  let data: any;
+  try { data = JSON.parse(text); } catch { data = { raw: text }; }
 
   if (!resp.ok || data?.Success === "False" || data?.success === false) {
     throw new Error(typeof data === "object" ? JSON.stringify(data) : String(text));
@@ -64,6 +69,7 @@ export async function POST(req: Request) {
     const {
       name = "",
       phone = "",
+      email = "",
       address = "",
       pickup = "",
       pickupStart = "",
@@ -82,9 +88,9 @@ export async function POST(req: Request) {
       );
     }
 
-    if (!name || !phone || !address || !pickup || !delivery) {
+    if (!name || !phone || !email || !address || !pickup || !delivery) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields (name, phone, address, pickup, delivery)." },
+        { success: false, error: "Missing required fields (name, phone, email, address, pickup, delivery)." },
         { status: 400 }
       );
     }
@@ -98,28 +104,26 @@ export async function POST(req: Request) {
       );
     }
 
-    // 1) Create customer (get customerID)
-    const customerID = await addCustomer(API_TOKEN, { name, phone, address });
+    // 1) Create customer (email is required by CleanCloud)
+    const customerID = await addCustomer(API_TOKEN, { name, phone, email, address });
 
-    // 2) Create order (status 3 = Pickup Requiring Confirmation)
+    // 2) Create order (status 3 = Pickup Requiring Confirmation; finalTotal is required)
     const orderPayload = {
       api_token: API_TOKEN,
       customerID,
-      finalTotal: 0,            // required by API; booking request = 0
-      status: 3,                // "Pickup Requiring Confirmation"
-      pickupDate,               // Unix timestamp @ 12pm UTC
-      pickupStart,              // e.g. "10am"
-      pickupEnd,                // e.g. "11am"
-      delivery: 1,              // 1 = has delivery
-      deliveryDate,             // Unix timestamp @ 12pm UTC
-      deliveryStart,            // e.g. "1pm"
-      deliveryEnd,              // e.g. "2pm"
-      orderNotes: notes,        // free text notes
-      // Optionally: products: [{ id, price, pieces, quantity, name }]
+      finalTotal: 0,
+      status: 3,                 // Pickup Requiring Confirmation
+      pickupDate,                // Unix timestamp @ 12pm UTC
+      pickupStart,
+      pickupEnd,
+      delivery: 1,
+      deliveryDate,              // Unix timestamp @ 12pm UTC
+      deliveryStart,
+      deliveryEnd,
+      orderNotes: notes,
     };
 
     const order = await addOrder(API_TOKEN, orderPayload);
-
     return NextResponse.json({ success: true, customerID, order });
   } catch (err: any) {
     return NextResponse.json(
