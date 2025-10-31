@@ -34,9 +34,6 @@ export default function Footer() {
                 <Link href="/pricing">Pricing</Link>
               </li>
               <li>
-                <Link href="/about">About Us</Link>
-              </li>
-              <li>
                 <Link href="/contact">Contact Us</Link>
               </li>
             </ul>
@@ -46,9 +43,9 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-gray-900">Contact</h4>
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
-              <li>📍 FortyFour Tower, Dekwaneh, Metn</li>
               <li>📞 <a href="tel:+96133392927">03 39 29 27</a></li>
               <li>✉️ support@globallaundry.co</li>
+              <li>📍 FortyFour Tower, Dekwaneh, Lebanon</li>
             </ul>
           </div>
 
@@ -56,9 +53,9 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-gray-900">Opening Hours</h4>
             <ul className="mt-3 text-sm text-gray-600">
-              <li>Mon–Fri: 9:00 AM – 6:00 PM</li>
-              <li>Sat: until 3:00 PM</li>
-              <li>Sun: Closed</li>
+              <li>Mon - Fri: 9:00 AM – 6:00 PM</li>
+              <li>Saturday's until 3:00 PM</li>
+              <li>Sunday's Holiday</li>
             </ul>
           </div>
         </div>
