@@ -41,13 +41,12 @@ export async function POST(req: Request) {
 
     const store = getStoreById(storeID);
     setSession({
-      name: data?.CustomerName || "",
-      email,
-      phone: data?.CustomerTel || "",
-      address: data?.CustomerAddress || "",
-      customerID: String(data.CustomerID),
-      storeID,
-      storeLabel: store?.label,
+    email: data?.CustomerEmail || "",
+    phone: data?.CustomerTel || "",
+    address: data?.CustomerAddress || "",
+    customerID: Number(data.CustomerID),
+    storeID: Number(storeID), // ✅ FIX HERE
+    storeLabel: store?.label,
     });
 
     return NextResponse.json({ ok: true, customerID: String(data.CustomerID) });

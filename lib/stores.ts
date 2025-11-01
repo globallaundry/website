@@ -1,19 +1,23 @@
-export type StoreDef = { key: "SARL" | "SAL"; id: string; label: string };
+import { create } from 'zustand';
 
-export const STORES: StoreDef[] = [
-  {
-    key: "SARL",
-    id: process.env.CLEANCLOUD_STORE_SARL || "",
-    label: "Jdeideh — Global Laundry SARL",
-  },
-  {
-    key: "SAL",
-    id: process.env.CLEANCLOUD_STORE_SAL || "",
-    label: "Dekwaneh — Global Laundry SAL",
-  },
-];
+type Session = {
+  customerID: number;
+  name: string;
+  email: string;
+  phone?: string;
+  address?: string;
+  storeID?: number;
+  storeLabel?: string;
+};
 
-export function getStoreById(id?: string | null): StoreDef | undefined {
-  if (!id) return undefined;
-  return STORES.find((s) => s.id === id);
-}
+type Store = {
+  session: Session | null;
+  setSession: (data: Session) => void;
+  clearSession: () => void;
+};
+
+export const useSessionStore = create<Store>((set) => ({
+  session: null,
+  setSession: (data) => set({ session: data }),
+  clearSession: () => set({ session: null }),
+}));

@@ -1,17 +1,19 @@
 import { cookies } from "next/headers";
 
-const COOKIE_NAME = "global_laundry_session";
+export const COOKIE_NAME = "gl_sess";
 
-// Define the session type
 export type GLSess = {
-  customerID: number;
   email: string;
-  storeID?: number;
+  phone: string;
+  address: string;
+  customerID: number;
+  storeID: number;
+  storeLabel?: string;
+  name?: string;
 };
 
-// Save session to cookie
 export function setSession(data: GLSess) {
-  const cookieStore = cookies();
+  const cookieStore = cookies(); // ✅ synchronous
   cookieStore.set(COOKIE_NAME, JSON.stringify(data), {
     httpOnly: true,
     path: "/",
@@ -19,13 +21,10 @@ export function setSession(data: GLSess) {
   });
 }
 
-// Read session from cookie
 export function getSession(): GLSess | null {
   const cookieStore = cookies();
   const raw = cookieStore.get(COOKIE_NAME)?.value;
-
   if (!raw) return null;
-
   try {
     return JSON.parse(raw) as GLSess;
   } catch {
@@ -33,11 +32,10 @@ export function getSession(): GLSess | null {
   }
 }
 
-// Remove session (logout)
 export function clearSession() {
   const cookieStore = cookies();
   cookieStore.set(COOKIE_NAME, "", {
     path: "/",
-    expires: new Date(0),
+    maxAge: 0,
   });
 }
